@@ -1,12 +1,6 @@
 const employers = ['Alex', '', 'ludmila', 'Viktor', '', 'oleg', 'iNna', 'Ivan', 'Alex', 'Olga', ' Ann'];
 
-let employersNames = employers.filter(employer => 
-       {return (employer.length > 0 && employer.length != '') 
-    });
-
-employersNames = employersNames.map(item => {
-    return item.toLowerCase().trim();
-});
+let employersNames = employers.filter(em => (em.length > 0 && em.length != '') ).map(item => item.toLowerCase().trim());
 
 const sponsors = {
     cash: [40000, 5000, 30400, 12000],
@@ -14,21 +8,16 @@ const sponsors = {
     rus: ['RusAuto', 'SBO']
 };
 
-function calcCash(own) {
-    own = own || 0;
-    let everyCash = [...arguments];
+const calcCash = (own = 0,...arg) => {
     let total = own;
-    let [, cashArr] = everyCash;
-    total += cashArr.reduce((sum, item) => {
-        return (sum + +item);
-    });
+    let [cashArr] = arg;
+    total += cashArr.reduce((sum, item) => sum + +item);
     return total;
 }
 
-const money = calcCash(null, sponsors.cash);
+const money = calcCash(null,sponsors.cash);
 
-function makeBusiness(owner, director, cash, emp) {
-    director = director || 'Victor';
+const makeBusiness = ({owner = 'Dave', director = 'Victor', cash = 0, emp = ['emp']}) => {
     let {eu,rus} = sponsors;
     let sumSponsors = [...eu, ...rus, 'unexpected sponsor'];
     sumSponsors = sumSponsors.join(' ');
@@ -39,4 +28,8 @@ ${sumSponsors}
 Note. Be careful with ${srl}. It's a huge risk.`);
 }
 
-makeBusiness('Sam', null, money, employersNames);
+makeBusiness({
+    owner: 'Sam', 
+    cash: money, 
+    emp: employersNames
+});
