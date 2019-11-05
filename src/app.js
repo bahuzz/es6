@@ -2,7 +2,11 @@ import {employersNames} from "./employers";
 import {sponsors,money} from "./sponsors";
 
 class MakeBusiness {
-    constructor(owner,director,cash,emp) {
+    constructor({
+        owner = "Dave",
+        director = "Victor",
+        cash = 0,
+        emp = ['emp']}) {
         this.owner = owner;
         this.director = director;
         this.cash = cash;
@@ -22,6 +26,10 @@ Note. Be careful with ${srl}. It's a huge risk.`);
 
 }
 
-const makeBusiness = new MakeBusiness('Sam', 'Victor', money, employersNames); 
+const makeBusiness = new MakeBusiness({
+    owner:'Sam', 
+    cash: money, 
+    emp: employersNames
+}); 
 makeBusiness.outConsole();
 
