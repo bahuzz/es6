@@ -1,5 +1,5 @@
-import {employersNames} from "./employers";
-import {sponsors,money} from "./sponsors";
+import EmployersNames from "./employers";
+import Sponsors from "./sponsors";
 
 class MakeBusiness {
     constructor({
@@ -25,11 +25,13 @@ Note. Be careful with ${srl}. It's a huge risk.`);
     }
 
 }
-
+const sponsors = new Sponsors(); 
+const employersNames = new EmployersNames();
 const makeBusiness = new MakeBusiness({
     owner:'Sam', 
-    cash: money, 
-    emp: employersNames
+    cash: sponsors.getMoney(), 
+    emp: employersNames.getNames()
 }); 
+
 makeBusiness.outConsole();
 

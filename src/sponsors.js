@@ -4,13 +4,22 @@ const sponsors = {
     rus: ['RusAuto', 'SBO']
 };
 
-const calcCash = (own = 0,...arg) => {
-    let total = own;
-    let [cashArr] = arg;
-    total += cashArr.reduce((sum, item) => sum + +item);
-    return total;
+export default class Sponsors {
+    constructor() {
+        this.cash = sponsors.cash;
+        this.eu = sponsors.eu;
+        this.rus = sponsors.rus;
+        this.calcCash = this.calcCash.bind(this);
+    }
+   
+    calcCash(own = 0,...arg) {
+        let total = own;
+        let [cashArr] = arg;
+        total += cashArr.reduce((sum, item) => sum + +item);
+        return total;
+    }
+
+    getMoney() {
+        return this.calcCash(null, this.cash);
+    }
 }
-
-const money = calcCash(null,sponsors.cash);
-
-export {sponsors,money};
